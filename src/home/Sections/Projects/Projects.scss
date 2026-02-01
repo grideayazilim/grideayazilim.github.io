@@ -1,0 +1,57 @@
+@use "../../../styles/variables.scss";
+@use "../../../styles/responsive.scss" as *;
+
+.projects-section {
+  text-align: center;
+
+  .projects {
+    text-align: left;
+    margin-top: 1.25rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 380px);
+    gap: 2rem;
+  }
+
+  .visit-btn {
+    margin: 1rem auto 0;
+    width: 335px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    .icon {
+      transition: 0.4s;
+    }
+
+    &:hover {
+      .icon {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  @include responsive(xl) {
+    .projects {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @include responsive(lg) {
+    .projects {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include responsive(sm) {
+    .projects {
+      grid-template-columns: 1fr;
+    }
+  }
+}

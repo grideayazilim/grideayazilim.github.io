@@ -1,0 +1,76 @@
+@use "../../styles/variables.scss";
+@use "../../styles/responsive.scss" as *;
+
+footer {
+  display: grid;
+  row-gap: 2rem;
+  padding-block: 2rem;
+
+  .line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--border-color);
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    @include responsive(xs) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  .left {
+    h2 {
+      font-family: "Space Grotesk", sans-serif;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .right {
+    display: flex;
+    gap: 0.4rem;
+
+    .link {
+      position: relative;
+      z-index: 0;
+      font-size: 1.5rem;
+      padding: 0.6rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--item-radius);
+      box-shadow: rgba(99, 99, 99, 0.144) 0px 5px 8px 0px;
+      overflow: hidden;
+
+      .bg {
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+        transition: 0.4s;
+      }
+
+      .icon {
+        display: block;
+        transition: 0.4s;
+      }
+
+      &:hover {
+        .bg {
+          opacity: 1;
+        }
+
+        .icon {
+          color: white;
+        }
+      }
+    }
+  }
+}

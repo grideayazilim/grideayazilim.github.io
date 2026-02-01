@@ -1,11 +1,9 @@
-import "./App.css";
+import "./App.scss";
+import Home from "./home/Home";
 
 function App() {
   return (
-    <div>
-      <h1>Mini Games Hub</h1>
-      <p>Oyunlar buraya eklenecek 👾</p>
-    </div>
+    <Home />
   );
 }
 

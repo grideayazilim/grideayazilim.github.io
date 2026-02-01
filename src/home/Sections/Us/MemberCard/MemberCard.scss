@@ -1,0 +1,124 @@
+@use "../../../../styles/responsive.scss" as *;
+
+.member-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  row-gap: 0.6rem;
+
+  .image {
+    position: relative;
+    z-index: 0;
+    width: 160px;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+
+    img {
+      transition: 0.4s;
+    }
+
+    .bg {
+      opacity: 0;
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+        0deg,
+        rgb(38, 84, 170) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transition: 0.4s;
+    }
+
+    .socials {
+      opacity: 0;
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 11;
+      display: flex;
+      column-gap: 0.5rem;
+      transition: 0.4s;
+
+      .link {
+        padding: 0.4rem;
+        border-radius: var(--item-radius);
+        border: 2px solid white;
+        transition: 0.4s;
+
+        .icon {
+          color: white;
+          font-size: 1.8rem;
+          display: block;
+        }
+
+        &:hover {
+          background-color: white;
+
+          .icon {
+            color: var(--primary-color);
+          }
+        }
+      }
+    }
+
+    @include responsive(lg) {
+        width: 110px;
+    }
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .name {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+
+    .icon-container {
+      border-radius: var(--item-radius);
+      padding: 0.3rem;
+      background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+
+      .icon {
+        display: block;
+        font-size: 1.2rem;
+        color: white;
+      }
+    }
+  }
+
+  &:hover {
+    .image {
+      img {
+        transform: scale(1.05) translateY(-2px);
+      }
+
+      .bg {
+        opacity: 1;
+      }
+
+      .socials {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.leader {
+  .image {
+    width: 180px;
+
+    @include responsive(lg) {
+        width: 130px;
+    }
+  }
+  h4 {
+    font-size: 1.1rem;
+  }
+}

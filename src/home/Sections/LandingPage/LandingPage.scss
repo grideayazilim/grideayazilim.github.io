@@ -1,0 +1,7 @@
+@use "../../../styles/variables.scss";
+
+.landing-page {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}

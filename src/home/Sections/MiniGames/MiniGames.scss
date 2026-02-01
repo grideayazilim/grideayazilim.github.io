@@ -1,0 +1,19 @@
+@use "../../../styles/variables.scss";
+@use "../../../styles/responsive.scss" as *;
+
+.mini-games-section {
+  text-align: center;
+
+  .mini-games {
+    text-align: left;
+    margin-top: 1.25rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    @include responsive(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@use "variables.scss";
+@use "responsive.scss" as *;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: var(--light-text-color);
+  font-weight: 300;
+}
+
+h1 {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--dark-text-color);
+  font-size: 4rem;
+  line-height: 1.1;
+
+  @include responsive(md) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  color: var(--dark-text-color);
+  font-size: 2.5rem;
+
+  @include responsive(md) {
+    font-size: 1.9rem;
+  }
+}
+
+h3 {
+  color: var(--dark-text-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+h4 {
+  color: var(--dark-text-color);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.text-lead {
+  font-size: 1.2rem;
+  letter-spacing: 0.2px;
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.dark {
+  color: var(--dark-text-color);
+}
+
+.colored {
+  color: var(--primary-color);
+}
+
+.text-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  &--blue {
+    background-image: var(--blue-gradient)
+  }
+
+  &--red {
+    background-image: var(--red-gradient)
+  }
+
+  &--purple {
+    background-image: var(--purple-gradient);
+  }
+}
