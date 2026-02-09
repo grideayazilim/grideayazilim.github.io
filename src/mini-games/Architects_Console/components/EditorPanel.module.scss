@@ -1,0 +1,96 @@
+.editorArea {
+  flex: 1;
+  background-color: #1e1e1e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #000;
+  color: #d4d4d4;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  select {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.codeArea {
+  flex: 1;
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #444;
+  padding: 15px;
+  font-family: "Consolas", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  border-radius: 4px;
+
+  &:focus {
+    border-color: #007acc;
+  }
+}
+
+.controls {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+
+  button {
+    flex: 1;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  button:nth-child(1) {
+    background-color: #2e7d32;
+    color: white;
+  }
+
+  button:nth-child(2) {
+    background-color: #c62828;
+    color: white;
+  }
+}
+
+.hintBtn {
+  background-color: #f39c12 !important;
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
