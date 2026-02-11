@@ -1,0 +1,591 @@
+@import '../../styles/theme';
+@import '../../styles/animations';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-family-base;
+    background-color: $bakery-cream;
+    color: $bakery-wood-dark;
+    min-height: 100vh;
+    overflow: hidden;
+    /* Prevent scrolling of the whole page, let children scroll */
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    /* Remove padding to use full screen */
+}
+
+.app-container {
+    display: flex;
+    /* Or grid, but let's stick to the plan */
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-header {
+    background-color: $bakery-wood;
+    color: #fff;
+    padding: $spacing-md $spacing-lg;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    /* Fixed height for header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h1 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+}
+
+.game-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    /* Fixed sidebar, fluid main */
+    flex: 1;
+    overflow: hidden;
+    /* Contain scrolls */
+    height: calc(100vh - 60px);
+    /* Subtract header height */
+}
+
+.sidebar {
+    background: url('../../assets/sidebar_bg.png') no-repeat center center;
+    background-size: cover;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding: $spacing-lg;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+
+    .level-info-panel {
+        background: url('../../assets/board.png') no-repeat center center;
+        background-size: 120% 120%;
+        border: none; // Remove border as board likely provides it
+        padding: 2rem; // Increase padding to keep text inside the "board"
+        border-radius: 8px; // Keep radius just in case, though board img might handle corners
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+
+            h2 {
+                font-size: 1.2rem;
+                color: $bakery-chocolate;
+            }
+
+            .level-counter {
+                font-size: 0.8rem;
+                color: #ddd;
+                font-weight: bold;
+            }
+        }
+
+        .instruction {
+            color: $bakery-chocolate;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .task-box {
+            background: #fff;
+            padding: 0.8rem;
+            border-left: 4px solid $bakery-strawberry;
+            margin-bottom: 0.5rem;
+        }
+
+        .hint-box {
+            color: #666;
+            font-style: italic;
+        }
+    }
+
+    /* Old Shelf Grid - Removed/Replaced */
+    /* .shelf-grid { ... } */
+
+
+
+
+
+    .editor-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+        /* Take remaining space if needed, or just be normal */
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                font-weight: bold;
+                color: $bakery-wood-dark;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 0.8rem;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 0.9rem;
+
+            &:focus {
+                outline: 2px solid $bakery-blue-light;
+                border-color: transparent;
+            }
+        }
+
+        .run-btn {
+            background-color: $bakery-mint;
+            color: $bakery-wood-dark;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: darken($bakery-mint, 10%);
+            }
+        }
+
+        .editor-footer {
+            text-align: right;
+            color: #999;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+.main-content {
+    background-color: #f8f9fa;
+    background-image: url('../../assets/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Slightly off-white for contrast */
+    padding: 0px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-inline: 0 !important;
+    width: 100%;
+    overflow-y: auto;
+    position: relative;
+    display: block;
+    /* Changed from flex center to block to let content flow */
+    /* justify-content: center; */
+    /* align-items: flex-start; */
+
+    .shelf-columns {
+        display: flex;
+        justify-content: space-around;
+        gap: $spacing-md;
+        height: 100%;
+        /* Or auto/min-height */
+        align-items: flex-start;
+    }
+
+    .shelf-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+        background-color: rgba($bakery-wood, 0.05);
+        padding: $spacing-md;
+        border-radius: 8px;
+        border: 2px dashed rgba($bakery-wood, 0.2);
+        min-width: 200px;
+        /* Ensure columns don't crush too much */
+
+        .shelf-label {
+            text-align: center;
+            font-weight: bold;
+            color: $bakery-wood;
+            margin-bottom: $spacing-sm;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 4px;
+            border-radius: 4px;
+        }
+    }
+
+    .shelf-item {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: $spacing-sm;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: all 0.2s ease;
+        box-shadow: $shadow-sm;
+        flex-shrink: 0;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: $shadow-md;
+        }
+
+        &.sql-selected {
+            border: 2px solid $bakery-success;
+            background-color: lighten($bakery-success, 45%);
+            animation: pulse-success 1.5s infinite;
+        }
+
+        /* Category Glows (Level 20) */
+        &.glow-red {
+            box-shadow: 0 0 10px $glow-red;
+            border-color: $glow-red;
+        }
+
+        &.glow-blue {
+            box-shadow: 0 0 10px $glow-blue;
+            border-color: $glow-blue;
+        }
+
+        &.glow-green {
+            box-shadow: 0 0 10px $glow-green;
+            border-color: $glow-green;
+        }
+
+        .item-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 4px;
+
+            .badge-price {
+                color: $bakery-accent;
+                font-weight: bold;
+            }
+        }
+
+        .img-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 4px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .item-info {
+            width: 100%;
+
+            h3 {
+                font-size: 0.9rem;
+                margin: 0 0 4px 0;
+                color: $bakery-wood-dark;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .detail {
+                font-size: 0.7rem;
+                color: #666;
+                margin: 0;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+/* Chef & Hint Area (Bottom Left of Sidebar) */
+.sidebar {
+    position: relative;
+    /* Ensure absolute children are relative to sidebar */
+
+    //overflow-y: hidden;
+}
+
+.chef-area {
+
+    margin-top: auto;
+    /* Push to bottom if sidebar is flex column */
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    /* Reserve space */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    pointer-events: none;
+    /* Let clicks pass through if needed */
+}
+
+.chef-container {
+
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    pointer-events: auto;
+    animation: slideUp 0.5s ease-out;
+
+
+
+    .chef-avatar {
+        margin-left: 100px;
+        width: 200px; // Increased from 120px
+        height: auto;
+        z-index: 10;
+        filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .speech-bubble-container {
+        position: relative;
+        margin-bottom: -40px; // Adjusted for bigger chef
+        /* Overlap slightly with chef */
+        margin-left: 80px; // Adjusted for bigger chef head
+        /* Offset from chef head */
+        width: 240px; // Slightly wider bubble
+        z-index: 20;
+        animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        .bubble-bg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .bubble-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #333;
+            font-weight: bold;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Next Level Area (Bottom Right of Main) */
+.main-content {
+    position: relative;
+    /* Context for absolute button */
+}
+
+.next-level-area {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 100;
+    pointer-events: auto;
+
+    .success-message {
+        background: #fff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: $bakery-success;
+        animation: bounce 1s infinite;
+    }
+
+    .next-level-btn {
+        background: linear-gradient(135deg, $bakery-success, darken($bakery-success, 10%));
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 6px 0 darken($bakery-success, 20%), 0 10px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s;
+        font-family: inherit;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 darken($bakery-success, 20%), 0 15px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        &:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 darken($bakery-success, 20%), 0 5px 5px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+
+    #root,
+    .app-container {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .game-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        border-right: none !important;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        overflow: visible !important;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    /* Chef Section adjustments */
+    .chef-area {
+        position: relative !important;
+        width: 100%;
+        min-height: 180px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        pointer-events: none;
+        /* Let clicks pass through empty space */
+        left: 0 !important;
+        bottom: 0 !important;
+    }
+
+    .chef-container {
+        position: relative !important;
+        /* Relative inside the flex container */
+        bottom: auto !important;
+        left: auto !important;
+        transform: scale(0.85);
+        /* Reduce size for mobile */
+        margin: 0;
+        pointer-events: auto;
+    }
+
+    .chef-container .chef-avatar {
+        margin-left: 0 !important;
+        width: 160px !important;
+    }
+
+    .chef-container .speech-bubble-container {
+        margin-left: -60px !important;
+        /* Adjust bubble relative to chef */
+        margin-bottom: -10px !important;
+        width: 200px !important;
+    }
+
+    .chef-container .speech-bubble-container .bubble-text {
+        font-size: 0.75rem !important;
+        /* Smaller text */
+    }
+
+    .main-content {
+        height: auto !important;
+        overflow: visible !important;
+        //padding: 10px !important;
+        display: block !important;
+    }
+
+    .shelf-columns {
+        flex-direction: column !important;
+        height: auto !important;
+
+        .shelf-column {
+            width: 100% !important;
+            margin-bottom: 20px;
+        }
+    }
+
+
+    /* Ensure the editor doesn't stretch too tall on mobile */
+    .sidebar .editor-panel textarea {
+        min-height: 120px !important;
+        /* Reduce default height */
+    }
+
+
+    /* Next level button position */
+    .next-level-area {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        z-index: 1000;
+    }
+}

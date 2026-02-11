@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "title": "Veritabanına Genel Bakış",
+    "instruction": "SQL'de `SELECT` komutu veritabanından veri çekmek için kullanılır. `*` operatörü ise tablodaki **tüm sütunları** seçer. Bu, veritabanını tanımak için kullanılan en temel komuttur.",
+    "task": "Veritabanındaki `malzemeler` tablosunun tüm içeriğini (satırlar ve sütunlar) görüntüle.",
+    "expectedQuery": "SELECT * FROM malzemeler",
+    "hint": "SELECT * FROM malzemeler",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Sütun Projeksiyonu",
+    "instruction": "Büyük tablolarda sadece ihtiyacımız olan veriyi çekmek performansı artırır. `SELECT` komutundan sonra spesifik sütun isimleri girerek **projeksiyon** (kısıtlama) yapabiliriz.",
+    "task": "`malzemeler` tablosundan sadece `Ad` sütununu çekerek malzeme isimlerini listele.",
+    "expectedQuery": "SELECT Ad FROM malzemeler",
+    "hint": "SELECT Ad FROM malzemeler",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Çoklu Sütun Seçimi",
+    "instruction": "Birden fazla sütun verisine ihtiyaç duyduğumuzda, sütun isimlerini **virgül (,)** ile ayırarak yan yana yazabiliriz.",
+    "task": "Her malzemenin `Ad` bilgisini ve stoktaki `Miktar` değerini aynı sorguda getir.",
+    "expectedQuery": "SELECT Ad, Miktar FROM malzemeler",
+    "hint": "SELECT Ad, Miktar FROM malzemeler",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Veri Filtreleme (Equality)",
+    "instruction": "Tüm veriyi çekmek yerine belirli kriterlere uyan satırları almak için `WHERE` cümlesi kullanılır. `=` operatörü tam eşleşme arar. Metin değerleri (String) tek tırnak `' '` içinde yazılmalıdır.",
+    "task": "`Ad` sütunu tam olarak 'Beyaz Un' olan satırın tüm verilerini getir.",
+    "expectedQuery": "SELECT * FROM malzemeler WHERE Ad = 'Beyaz Un'",
+    "hint": "SELECT * FROM malzemeler WHERE Ad = 'Beyaz Un'",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Sayısal Filtreleme (Comparison)",
+    "instruction": "Sayısal verilerde büyüktür (`>`), küçüktür (`<`), büyük eşittir (`>=`) gibi karşılaştırma operatörleri kullanılır. Bu sorgular stok kontrolü gibi analizler için kritiktir.",
+    "task": "`Miktar` değeri 10'dan büyük (`>`) olan tüm malzemeleri filtrele.",
+    "expectedQuery": "SELECT * FROM malzemeler WHERE Miktar > 10",
+    "hint": "SELECT * FROM malzemeler WHERE Miktar > 10",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Kategorik Filtreleme",
+    "instruction": "Veritabanları genellikle verileri kategorize eder. Metin tabanlı filtrelemelerde büyük/küçük harf duyarlılığına dikkat edilmelidir.",
+    "task": "`Kategori` sütunu 'Sıvı' olan tüm malzemeleri listele.",
+    "expectedQuery": "SELECT * FROM malzemeler WHERE Kategori = 'Sıvı'",
+    "hint": "SELECT * FROM malzemeler WHERE Kategori = 'Sıvı'",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Mantıksal Operatörler (AND)",
+    "instruction": "Birden fazla koşulun **aynı anda** sağlanmasını istiyorsak `AND` operatörünü kullanırız. Bu durumda her iki koşul da `TRUE` dönmelidir.",
+    "task": "Hem `Kategori`si 'Temel' olan HEM DE `Miktar`ı 20'den büyük olan ürünleri filtrele. (Kesişim Kümesi)",
+    "expectedQuery": "SELECT * FROM malzemeler WHERE Kategori = 'Temel' AND Miktar > 20",
+    "hint": "SELECT * FROM malzemeler WHERE Kategori = 'Temel' AND Miktar > 20",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Mantıksal Operatörler (OR)",
+    "instruction": "Koşullardan **en az birinin** sağlanması yeterliyse `OR` operatörü kullanılır. Bu, kümelerin birleşimi gibidir.",
+    "task": "`Kategori`si 'Baharat' OLAN veya 'Temel' OLAN tüm malzemeleri getir.",
+    "expectedQuery": "SELECT * FROM malzemeler WHERE Kategori = 'Baharat' OR Kategori = 'Temel'",
+    "hint": "SELECT * FROM malzemeler WHERE Kategori = 'Baharat' OR Kategori = 'Temel'",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Liste Filtreleme (IN)",
+    "instruction": "Bir sütunun değeri, belirli bir listedeki değerlerden herhangi birine eşitse `IN` operatörü kullanılır. `OR` operatörünün daha temiz ve kısa yazımıdır.",
+    "task": "`Kategori` değeri ('Temel', 'Sıvı', 'Meyve') listesinden herhangi biri olan malzemeleri `IN` kullanarak getir.",
+    "expectedQuery": "SELECT * FROM malzemeler WHERE Kategori IN ('Temel', 'Sıvı', 'Meyve')",
+    "hint": "SELECT * FROM malzemeler WHERE Kategori IN ('Temel', 'Sıvı', 'Meyve')",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Aralık Sorgusu (BETWEEN)",
+    "instruction": "Sayısal veya tarihsel verilerde belirli bir aralığı sorgulamak için `BETWEEN` operatörü kullanılır. Başlangıç ve bitiş değerleri dahildir.",
+    "task": "`Miktar` değeri 5 ile 50 (dahil) arasında olan malzemelerin sadece `Miktar` sütununu görüntüle.",
+    "expectedQuery": "SELECT Miktar FROM malzemeler WHERE Miktar BETWEEN 5 AND 50",
+    "hint": "SELECT Miktar FROM malzemeler WHERE Miktar BETWEEN 5 AND 50",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Desen Eşleştirme (LIKE)",
+    "instruction": "Tam eşleşme yerine metin içinde belirli bir desen aramak için `LIKE` kullanılır. `%` karakteri 'herhangi bir karakter dizisi' anlamına gelir (Wildcard).",
+    "task": "`Ad` sütunu içinde 'Şeker' kelimesi geçen (`%Şeker%`) ürünlerin `STT` (Son Tüketim Tarihi) bilgisini getir.",
+    "expectedQuery": "SELECT STT FROM malzemeler WHERE Ad LIKE '%Şeker%'",
+    "hint": "SELECT STT FROM malzemeler WHERE Ad LIKE '%Şeker%'",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 12,
+    "title": "Sıralama ve Limitleme (LIMIT)",
+    "instruction": "`ORDER BY` verileri sıralar (ASC: Artan, DESC: Azalan). `LIMIT` ise dönen sonuç sayısını kısıtlar. En düşük stoklu ürünleri bulmak için idealdir.",
+    "task": "Malzemeleri `Miktar`a göre artan (ASC) şekilde sırala ve sadece ilk 3 kaydı getir.",
+    "expectedQuery": "SELECT * FROM malzemeler ORDER BY Miktar ASC LIMIT 3",
+    "hint": "SELECT * FROM malzemeler ORDER BY Miktar ASC LIMIT 3",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 13,
+    "title": "Sayfalama Mantığı (OFFSET)",
+    "instruction": "`OFFSET`, sorgu sonucunun başından belirli sayıda satırı atlamayı sağlar. Genellikle `LIMIT` ile birlikte sayfalama (pagination) yapmak için kullanılır.",
+    "task": "`Miktar`a göre azalan (DESC) sırala, ilk 2 malzemeyi atla (`OFFSET 2`) ve sonraki 10 kaydı listele.",
+    "expectedQuery": "SELECT * FROM malzemeler ORDER BY Miktar DESC LIMIT 10 OFFSET 2",
+    "hint": "SELECT * FROM malzemeler ORDER BY Miktar DESC LIMIT 10 OFFSET 2",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 14,
+    "title": "Agregasyon (MIN)",
+    "instruction": "Aggregate fonksiyonlar (MIN, MAX, AVG, SUM, COUNT) sütundaki tüm değerleri işleyerek tek bir özet değer döndürür. `MIN` en küçük değeri bulur.",
+    "task": "Depodaki en düşük stok miktarını tek bir değer olarak hesapla (`MIN(Miktar)`).",
+    "expectedQuery": "SELECT MIN(Miktar) FROM malzemeler",
+    "hint": "SELECT MIN(Miktar) FROM malzemeler",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 15,
+    "title": "Agregasyon (MAX)",
+    "instruction": "`MAX` fonksiyonu, belirtilen sütundaki en yüksek değeri bulur. En yüksek stoklu ürünü veya en son tarihi bulmak için kullanılır.",
+    "task": "Depodaki en yüksek stok miktarını tek bir değer olarak hesapla (`MAX(Miktar)`).",
+    "expectedQuery": "SELECT MAX(Miktar) FROM malzemeler",
+    "hint": "SELECT MAX(Miktar) FROM malzemeler",
+    "background": "bakery-bg.jpg"
+  },
+  {
+    "id": 16,
+    "title": "Veri Güncelleme (UPDATE)",
+    "instruction": "`UPDATE` komutu tablodaki mevcut verileri değiştirmek için kullanılır. `SET` ile yeni değer atanır, `WHERE` ile hangi satırın güncelleneceği seçilir. `WHERE` UNUTULURSA TÜM TABLO GÜNCELLENİR! (Tehlikeli)",
+    "task": "`Ad`ı 'Beyaz Un' olan malzemenin `Miktar`ını güvenli bir şekilde `100` olarak güncelle.",
+    "expectedQuery": "UPDATE malzemeler SET Miktar = 100 WHERE Ad = 'Beyaz Un'",
+    "hint": "UPDATE malzemeler SET Miktar = 100 WHERE Ad = 'Beyaz Un'",
+    "background": "bakery-bg.jpg"
+  }
+]
