@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import BakeryShelf from '../BakeryShelf';
-import SqlEditor from '../Editor/SqlEditor';
-import LevelInfo from '../LevelInfo/LevelInfo';
-import { useSqlEngine } from '../../hooks/useSqlEngine';
-import { useGameLogic } from '../../hooks/useGameLogic';
-import levels from '../../data/levels.json';
-import './Game.scss';
+import BakeryShelf from './components/BakeryShelf';
+import SqlEditor from './components/Editor/SqlEditor';
+import LevelInfo from './components/LevelInfo/LevelInfo';
+import { useSqlEngine } from './hooks/useSqlEngine';
+import { useGameLogic } from './hooks/useGameLogic';
+import levels from './data/levels.json';
+import './SQLBakery.scss';
 
-function Game() {
+function SQLBakery() {
     const { executeSql, result, error, selectedIds, selectedColumns, tableData } = useSqlEngine();
     const {
         currentLevel,
@@ -65,12 +65,12 @@ function Game() {
                         {(error || (hasAttempted && !levelSuccess)) && (
                             <div className="chef-container">
                                 <div className="speech-bubble-container">
-                                    <img src={new URL('../../assets/speech_bubble.png', import.meta.url).href} className="bubble-bg" alt="Hint" />
+                                    <img src={new URL('./assets/speech_bubble.png', import.meta.url).href} className="bubble-bg" alt="Hint" />
                                     <div className="bubble-text">
                                         {currentLevel ? currentLevel.hint : "..."}
                                     </div>
                                 </div>
-                                <img src={new URL('../../assets/chef.png', import.meta.url).href} className="chef-avatar" alt="Chef" />
+                                <img src={new URL('./assets/chef.png', import.meta.url).href} className="chef-avatar" alt="Chef" />
                             </div>
                         )}
                     </div>
@@ -98,4 +98,4 @@ function Game() {
     );
 }
 
-export default Game;
+export default SQLBakery;

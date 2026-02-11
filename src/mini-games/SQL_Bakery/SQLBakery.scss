@@ -1,5 +1,5 @@
-@import '../../styles/theme';
-@import '../../styles/animations';
+@import './styles/theme';
+@import './styles/animations';
 
 * {
     box-sizing: border-box;
@@ -58,7 +58,7 @@ body {
 }
 
 .sidebar {
-    background: url('../../assets/sidebar_bg.png') no-repeat center center;
+    background: url('./assets/sidebar_bg.png') no-repeat center center;
     background-size: cover;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     padding: $spacing-lg;
@@ -68,7 +68,7 @@ body {
     gap: $spacing-lg;
 
     .level-info-panel {
-        background: url('../../assets/board.png') no-repeat center center;
+        background: url('./assets/board.png') no-repeat center center;
         background-size: 120% 120%;
         border: none; // Remove border as board likely provides it
         padding: 2rem; // Increase padding to keep text inside the "board"
@@ -177,7 +177,7 @@ body {
 
 .main-content {
     background-color: #f8f9fa;
-    background-image: url('../../assets/bg.png');
+    background-image: url('./assets/bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
