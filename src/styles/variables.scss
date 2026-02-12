@@ -1,0 +1,29 @@
+:root {
+  /* ===== Color Constants ===== */
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-700: #3c4858;
+  --gray-900: #0f172a;
+
+  /* ===== Semantic variables ===== */
+  /* Color constants */
+  --primary-color: #6464e9;
+  --background: #f5f7ff;
+  --foreground: #ffffff;
+  --dark-text-color: var(--gray-900);
+  --light-text-color: var(--gray-700);
+  --blue-gradient: radial-gradient( circle 742px at 2.7% 5%,  rgba(36,93,227,1) 0%, rgb(166, 179, 211) 69%, rgb(111, 109, 190) 90% );
+  --red-gradient: linear-gradient( 68.3deg,  rgba(245,177,97,1) 0.4%, rgba(236,54,110,1) 100.2% );
+  --purple-gradient: linear-gradient( 109.6deg,  rgba(166,64,221,1) 21.2%, rgba(102,165,235,1) 74.4% );
+  --border-color: var(--gray-200);
+
+  /* Spacing */
+  --page-padding-inline: 5%;
+  --card-padding: 2rem 1.5rem;
+  --small-item-padding: 0.3rem 0.5rem;
+
+  /* Radius */
+  --card-radius: 20px;
+  --item-radius: 10px;
+}

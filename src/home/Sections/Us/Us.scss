@@ -1,0 +1,63 @@
+@use "../../../styles/variables.scss";
+@use "../../../styles/responsive.scss" as *;
+
+.us-section {
+  text-align: center;
+  
+  .teams {
+    margin-top: 1rem;
+    display: grid;
+    gap: 3rem;
+    text-align: left;
+
+    .team {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+
+      h2 {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .line {
+        width: 100%;
+        height: 2px;
+        background-color: var(--border-color);
+      }
+
+      .members {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        @include responsive(sm) {
+          justify-content: center;
+        }
+      }
+    }
+
+    .dev-team {
+      justify-self: flex-end;
+
+      h2 {
+        text-align: right;
+      }
+
+      .members {
+        flex-direction: row-reverse;
+      }
+
+      @include responsive(sm) {
+        justify-self: flex-start;
+
+        h2 {
+            text-align: left;
+        }
+
+        .members {
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}

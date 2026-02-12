@@ -1,0 +1,36 @@
+// Palette
+$bakery-wood-dark: #5D4037;
+$bakery-wood: #795548; // Added
+$bakery-wood-light: #D7CCC8;
+$bakery-cream: #FFF8E1;
+$bakery-gold: #FFC107;
+$bakery-accent: #E64A19;
+$bakery-success: #4CAF50;
+$bakery-error: #F44336;
+
+$bakery-chocolate: #3E2723; // Added
+$bakery-strawberry: #FF4081; // Added - Pinkish red
+$bakery-mint: #66BB6A; // Added - Greenish
+$bakery-blue-light: #42A5F5; // Added - Blueish
+
+// Glow Colors
+$glow-gold: $bakery-gold;
+$glow-red: #FF5252; // Fruits
+$glow-blue: #448AFF; // Basics
+$glow-green: #69F0AE; // Spices
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+$shadow-glow: 0 0 15px $bakery-gold;
+
+// Typography
+$font-family-base: 'Inter', sans-serif;
+$font-family-header: 'Outfit', sans-serif;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;

@@ -1,0 +1,56 @@
+@use "../../styles/variables.scss";
+@use "../../styles/responsive.scss" as *;
+
+nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem var(--page-padding-inline);
+  transition: 0.8s ease;
+
+  .progress-line {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 5px;
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    border-radius: var(--item-radius);
+  }
+
+  h3 {
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+
+    .nav-link {
+      font-weight: 600;
+      transition: 0.4s;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+    
+    @include responsive(xs) {
+        display: none;
+    }
+  }
+}
+
+.nav-blur {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.89);
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: rgba(117, 117, 128, 0.075) 0px 7px 10px 0px;
+}

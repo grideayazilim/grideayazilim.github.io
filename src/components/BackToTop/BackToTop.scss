@@ -1,0 +1,24 @@
+.back-to-top {
+    position: fixed;
+    z-index: 100;
+    bottom: -150px;
+    right: 50px;
+    padding: 1rem;
+    background-color: var(--background);
+    border-radius: var(--item-radius);
+    border: 2px solid var(--border-color);
+    box-shadow: rgba(99, 99, 99, 0.144) 0px 5px 8px 0px;
+    transition: 0.4s;
+
+    .icon {
+        display: block;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.show {
+    bottom: 50px;
+}

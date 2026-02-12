@@ -1,0 +1,26 @@
+@use "sass:map";
+
+// responsive.scss
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1400px,
+);
+
+@mixin responsive($size) {
+  $value: map.get($breakpoints, $size);
+
+  @if $value == null {
+    @error "Geçersiz breakpoint: #{$size}";
+  }
+
+  @if $value == 0 {
+    @content; // xs → direkt bas
+  } @else {
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+}

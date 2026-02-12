@@ -1,0 +1,42 @@
+@use "variables.scss";
+@use "responsive.scss" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+}
+
+main {
+  margin: 0 auto;
+  max-width: 1300px;
+  padding-inline: 50px;
+
+  @include responsive(xl) {
+    padding-inline: var(--page-padding-inline);
+  }
+}
+
+section {
+  display: grid;
+  row-gap: 1.5rem;
+  padding-block: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light-text-color);
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
