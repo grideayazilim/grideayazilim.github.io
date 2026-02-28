@@ -12,14 +12,25 @@ function Navbar() {
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
 
-      setScrolled(scrollTop > 40);
+      // lp-wrapper'ın (LandingPage + About sticky bölümü) alt kenarı
+      // viewport'a girince nav-blur tetiklensin.
+      // lp-wrapper son ~100vh'ye geldiğinde bottom ≈ window.innerHeight olur.
+      const lpWrapper = document.getElementById("lp-wrapper");
+      if (lpWrapper) {
+        const { bottom } = lpWrapper.getBoundingClientRect();
+        // bottom, viewport yüksekliğine yaklaştığında (son 100vh) blur aç
+        setScrolled(bottom <= window.innerHeight * 1.05);
+      } else {
+        // Fallback: lp-wrapper bulunamazsa eski davranış
+        setScrolled(scrollTop > 40);
+      }
 
       if (docHeight > 0) {
         setProgress((scrollTop / docHeight) * 100);
       }
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

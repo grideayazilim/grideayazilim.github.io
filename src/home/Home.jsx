@@ -1,6 +1,5 @@
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import AboutUs from "./Sections/AboutUs/AboutUs";
 import LandingPage from "./Sections/LandingPage/LandingPage";
 import MiniGames from "./Sections/MiniGames/MiniGames";
 import Projects from "./Sections/Projects/Projects";
@@ -13,10 +12,9 @@ function Home() {
     <main className="home">
       <Navbar />
       <LandingPage />
-      <AboutUs />
       <Projects />
       <MiniGames />
-      <Us />
+      {/* <Us /> */}
       <Footer />
       <BackToTop />
     </main>

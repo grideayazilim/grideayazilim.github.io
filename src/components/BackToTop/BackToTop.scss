@@ -2,8 +2,8 @@
     position: fixed;
     z-index: 100;
     bottom: -150px;
-    right: 50px;
-    padding: 1rem;
+    right: 35px;
+    padding: 1.25rem;
     background-color: var(--background);
     border-radius: var(--item-radius);
     border: 2px solid var(--border-color);
@@ -20,5 +20,5 @@
 }
 
 .show {
-    bottom: 50px;
+    bottom: 30px;
 }

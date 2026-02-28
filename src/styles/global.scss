@@ -13,11 +13,12 @@ html {
 
 body {
   background-color: var(--background);
+  overflow-x: hidden;
 }
 
 main {
   margin: 0 auto;
-  max-width: 1300px;
+  max-width: 1500px;
   padding-inline: 50px;
 
   @include responsive(xl) {
@@ -28,7 +29,8 @@ main {
 section {
   display: grid;
   row-gap: 1.5rem;
-  padding-block: 3rem;
+  padding-bottom: 5rem;
+  scroll-margin: 6rem;
 }
 
 a {

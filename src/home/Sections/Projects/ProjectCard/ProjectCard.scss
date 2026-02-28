@@ -20,6 +20,7 @@
   }
 
   .techs {
+    margin-top: auto;
     display: flex;
     column-gap: 0.5rem;
 
@@ -36,11 +37,13 @@
   }
 
   .line {
+    margin-top: auto;
     height: 1px;
     background-color: var(--border-color);
   }
 
   .link {
+    margin-top: auto;
     display: flex;
     justify-content: center;
     align-items: center;

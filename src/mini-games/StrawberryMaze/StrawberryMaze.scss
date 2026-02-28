@@ -14,26 +14,6 @@ $green: #586b6d;
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  background: linear-gradient(135deg, $bg-cream 0%, $bg-light 100%);
-}
-
 .maze-game-container {
   width: 100vw;
   height: 100vh;
@@ -43,6 +23,9 @@ body {
   justify-content: center;
   overflow: hidden;
   position: relative;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, $bg-cream 0%, $bg-light 100%);
 
   // Animasyon
   &.transitioning {
