@@ -303,21 +303,18 @@ export default function Oyun2() {
 
     if (isPlayer) {
       cellClass += " player";
-      content = (
-        <>
-          <div className="path-placeholder"></div>
-          <img
-            src={duckiImg}
-            alt="Oyuncu"
-            className="cell-image player-image"
-          />
-        </>
-      );
     }
 
     return (
       <div key={`${rowIndex}-${colIndex}`} className={cellClass}>
         {content}
+        {isPlayer && (
+          <img
+            src={duckiImg}
+            alt="Oyuncu"
+            className="cell-image player-image"
+          />
+        )}
       </div>
     );
   };
@@ -446,8 +443,8 @@ export default function Oyun2() {
         <div
           className="maze-container"
           style={{
-            gridTemplateColumns: `repeat(${maze[0].length}, 1fr)`,
-            gridTemplateRows: `repeat(${maze.length}, 1fr)`,
+            gridTemplateColumns: `repeat(${maze[0].length}, minmax(0, 1fr))`,
+            gridTemplateRows: `repeat(${maze.length}, minmax(0, 1fr))`,
           }}
         >
           {maze.map((row, rowIndex) =>
