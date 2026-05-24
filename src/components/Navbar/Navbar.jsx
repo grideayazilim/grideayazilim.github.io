@@ -39,7 +39,7 @@ function Navbar() {
       <div className="progress-line" style={{width: `${progress}%`}}></div>
       <h3 className="colored">GRIDEA</h3>
       <div className="nav-links">
-        <a href="#about-us" className="nav-link">
+        <a href="#lp-wrapper" className="nav-link">
           Hakkımızda
         </a>
         <a href="#projects" className="nav-link">
@@ -47,9 +47,6 @@ function Navbar() {
         </a>
         <a href="#mini-games" className="nav-link">
           Oyunlar
-        </a>
-        <a href="#us" className="nav-link">
-          Ekip
         </a>
       </div>
     </nav>

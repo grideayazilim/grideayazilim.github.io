@@ -18,6 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.8rem;
 
     .gains {
       display: flex;
@@ -29,6 +30,11 @@
         padding: var(--small-item-padding);
         border: 1px solid rgba(var(--game-color), 0.3);
       }
+    }
+
+    @include responsive(md) {
+      align-items: start;
+      flex-direction: column;
     }
   }
 

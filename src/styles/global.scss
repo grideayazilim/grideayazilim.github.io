@@ -19,7 +19,7 @@ body {
 main {
   margin: 0 auto;
   max-width: 1500px;
-  padding-inline: 50px;
+  padding-inline: 100px;
 
   @include responsive(xl) {
     padding-inline: var(--page-padding-inline);

@@ -1,13 +1,12 @@
 @use "../../../styles/responsive.scss" as *;
 @use "../../../styles/variables.scss";
 
-// ── Dış wrapper (scroll yüksekliği: 4 × 100vh) ────────────────
+// ── Dış wrapper (scroll yüksekliği dinamik olarak JS'ten ayarlanır) ────────────────
 .lp-wrapper {
   display: block;
   padding-block: 0;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: calc(4 * 100vh);
 }
 
 // ── Sticky kapsayıcı ──────────────────────────────────────────
@@ -135,15 +134,14 @@
     gap: 1.5rem;
 
     &__left {
-      width: 100%;
-      text-align: center;
+      display: none;
     }
 
     &__right {
       flex: 0 0 auto;          // flex:1'i iptal et — yüksekliği kendisi belirlesin
       width: 100%;
       position: relative;
-      height: 200px;
+      height: 380px;           // Kartların mobilde taşmasını ve kesilmesini önlemek için artırıldı
     }
 
     &__card {
